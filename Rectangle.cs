@@ -1,24 +1,27 @@
 using Simple2d;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using Point = Simple2d.Point;
 
-public class Rectangle
+public class Rectangle : NativeObject, IShape
 {
-    [DllImport("simple2d_rust.dll")]
-    private static extern IntPtr create_rectangle(IntPtr window, int a, int b, int x, int y);
-
-
-    IntPtr handle;
-    public static IntPtr window;
-
     public Rectangle(Point size, Point position) 
     {
-        handle = CreateRectangle(size.X, size.Y, position.X, position.Y);
+        this.position = position;
 
+        //стоило бы это скрыть.
+        Handle = NativeObjectFactory.CreateRectangle(size, position);
     }
 
-    private static IntPtr CreateRectangle(int a, int b, int x, int y)
+    public Point Position => position;
+    public System.Drawing.Color Color => color;
+
+    public void MoveTo(Point toPoint)
     {
-        return create_rectangle(window, a, b, x, y);
-
+        NativeApi.move_to(Handle, toPoint.X, toPoint.Y);
     }
+
+    private Point position;
+    private Color color;
+
 } 
