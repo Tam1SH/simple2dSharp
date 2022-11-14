@@ -1,7 +1,7 @@
 
 namespace Simple2d
 {
-    public class NativeObject
+    public abstract class NativeObject
     {
         protected IntPtr Handle { get; set; }
         public NativeObject() { }

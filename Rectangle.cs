@@ -14,6 +14,7 @@ public class Rectangle : NativeObject, IShape
     }
 
     public Point Position => position;
+    //свой Point сделаем а Color позаимствуем.
     public System.Drawing.Color Color => color;
 
     public void MoveTo(Point toPoint)
@@ -22,6 +23,7 @@ public class Rectangle : NativeObject, IShape
     }
 
     private Point position;
+
     private Color color;
 
 } 
